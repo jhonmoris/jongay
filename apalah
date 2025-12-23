@@ -4,11 +4,13 @@ RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 
-# Mengecek jika permintaan bukan berupa file yang ada
+# 1. JIKA ada file fisik (gambar, pdf, dll), JANGAN diredirect ke home
 RewriteCond %{REQUEST_FILENAME} !-f
-# Mengecek jika permintaan bukan berupa direktori yang ada
+
+# 2. JIKA ada folder/direktori fisik, JANGAN diredirect ke home
 RewriteCond %{REQUEST_FILENAME} !-d
-# Jika file/direktori tidak ditemukan, lempar ke index.php
+
+# 3. Jika poin 1 & 2 tidak terpenuhi, barulah kirim ke index.php
 RewriteRule . /index.php [L]
 </IfModule>
 # END WordPress
